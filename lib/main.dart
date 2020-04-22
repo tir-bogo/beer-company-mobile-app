@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:beerapp/screens/info_screen.dart';
 import 'package:beerapp/src/models/item_model.dart';
 import 'package:flutter/material.dart';
 
@@ -39,46 +40,53 @@ class HomeScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: EdgeInsets.all(5),
-                  child: Container(
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.only(right: 5),
-                          child: Image.network(
-                            //image url
-                            image,
-                            height: 80,
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => InfoScreen()
+                      ));
+                    },
+                    child: Container(
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.only(right: 5),
+                            child: Image.network(
+                              //image url
+                              image,
+                              height: 80,
+                            ),
                           ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            //name
-                            Text(
-                              name,
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            //description
-                            Text(
-                              description,
-                              style: TextStyle(fontSize: 15),
-                            ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              //name
+                              Text(
+                                name,
+                                style: TextStyle(fontSize: 20, fontWeight:  FontWeight.bold),
+                              ),
+                              //description
+                              Text(
+                                description,
+                                style: TextStyle(fontSize: 15),
+                              ),
 
-                            //Row skal laves til en widget som viser bedømmelse med stjerner
-                            Row(
-                              children: <Widget>[
-                                Icon(Icons.star),
-                                Icon(Icons.star),
-                                Icon(Icons.star),
-                                Icon(Icons.star),
-                                Icon(Icons.star),
-                                //rating_count
-                                Text("("+rating_count.toString()+")"),
-                              ],
-                            )
-                          ],
-                        )
-                      ],
+                              //Row skal laves til en widget som viser bedømmelse med stjerner
+                              Row(
+                                children: <Widget>[
+                                  Icon(Icons.star),
+                                  Icon(Icons.star),
+                                  Icon(Icons.star),
+                                  Icon(Icons.star),
+                                  Icon(Icons.star),
+                                  //rating_count
+                                  Text("("+rating_count.toString()+")"),
+                                ],
+                              )
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 );
